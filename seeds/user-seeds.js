@@ -12,8 +12,8 @@ const userData = [
   {
     firstName: "Mike",
     lastName: "Johnson",
-    userName: "MJohnson",
-    email: "MJohnson@cbc.ca",
+    userName: "M22Johnson",
+    email: "M22Johnson@cbc.ca",
     password: "test",
   },
   {

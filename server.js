@@ -7,6 +7,7 @@ const helpers = require("./utils/helpers");
 const exphbs = require("express-handlebars");
 const sequelize = require("./config/connection");
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
+
 // config dot.env, use PORT in env
 
 require("dotenv").config();
@@ -32,12 +33,9 @@ app.use(session(sess));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
+app.use(require("./controllers"));
 
-sequelize.sync({ force: false }).then(() => {
-  app.listen(
-    (PORT,
-    () => {
-      console.log(`Backend Server Online~! Now listening on ${PORT}`);
-    })
-  );
+app.listen(PORT, () => {
+  console.log(`App listening on port ${PORT}!`);
+  sequelize.sync({ force: true });
 });
