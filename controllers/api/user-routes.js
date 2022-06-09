@@ -59,4 +59,92 @@ router.post("/", (req, res) => {
       );
     });
 });
+// logging in
+router.post("/login", (req, res) => {
+  User.findOne({
+    where: {
+      userName: req.body.userName,
+    },
+  }).then((userData) => {
+    if (!userData) {
+      res
+        .status(400)
+        .json({ message: "That username does not exist Try Again" });
+      return;
+    }
+    // check for password
+    const validPassword = userData.checkPassword(req.body.password);
+
+    if (!validPassword) {
+      res.status(400).json({ message: "Incorrect password.. " });
+      return;
+    }
+
+    req.session.save(() => {
+      req.session.user_id = userData.id;
+      req.session.userName = userData.userName;
+      req.session.loggedIn = true;
+
+      res.json({ user: userData, message: "You are now logged In!" });
+    });
+  });
+});
+// logging out
+router.post("/logout", (req, res) => {
+  // if user is logged in
+  if (req.session.loggedIn) {
+    // destroy connection
+    req.session.destroy(() => {
+      console.log("Logging out~!");
+      res
+        .status(204)
+        .json({ message: "You are now logged out... See you next time !!" })
+        .end();
+    });
+  } else {
+    res.status(404).end();
+  }
+});
+// user updating information
+router.put("/:id", (req, res) => {
+  User.update(req.body, {
+    individualHooks: true,
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((userData) => {
+      if (!userData) {
+        req
+          .status(404)
+          .json({ message: "There's no user with that id, Try again!" });
+        return;
+      }
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log("There's an error in updating a user.. Try again!");
+    });
+});
+
+router.delete("/:id", (req, res) => {
+  User.destroy({
+    where: {
+      id: req.params.id,
+    },
+  })
+    .then((userData) => {
+      if (!userData) {
+        res
+          .status(404)
+          .json({ message: "There's no user with that ID.. Try again" });
+        return;
+      }
+      res.json(userData);
+    })
+    .catch((err) => {
+      console.log("There's an error when to delete a user.. Try again");
+    });
+});
+
 module.exports = router;
