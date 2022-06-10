@@ -1,0 +1,17 @@
+:root {
+  --darkRed: #700909;
+  --brightRed: #8b0000;
+  --brightYellow: #fff8ba;
+  --pastelYellow: #ffe0a3;
+  --tobeYellow: #f5d49a;
+}
+* {
+  margin: 0px;
+  padding: 0px;
+}
+.navbar {
+  height: 8rem;
+  background-color: var(--brightRed);
+  color: white;
+  font-size: 5rem;
+}
