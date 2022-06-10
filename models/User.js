@@ -1,7 +1,6 @@
 const { Model, DataTypes } = require("sequelize");
 const bcrypt = require("bcrypt");
 const sequelize = require("../config/connection");
-const { beforeUpdate } = require("../../Tech-News-MVC/models/User");
 
 class User extends Model {
   checkPassword(loginPassword) {
@@ -24,12 +23,16 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    // userName should be unique!
     userName: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
+    // email should be unique!
     email: {
       type: DataTypes.STRING,
+      unique: true,
       allowNull: false,
     },
     password: {
@@ -43,13 +46,13 @@ User.init(
   {
     hooks: {
       async beforeCreate(newUserData) {
-        newUserData.password = await bcrypt.hash(newUserData.password, 15);
+        newUserData.password = await bcrypt.hash(newUserData.password, 8);
         return newUserData;
       },
       async beforeUpdate(updatedUserData) {
         updatedUserData.password = await bcrypt.hash(
           updatedUserData.password,
-          15
+          8
         );
         return updatedUserData;
       },

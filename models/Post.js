@@ -14,6 +14,10 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    post_text: {
+      type: DataTypes.STRING,
+      allowNull: true,
+    },
     post_url: {
       type: DataTypes.STRING,
       allowNull: false,
