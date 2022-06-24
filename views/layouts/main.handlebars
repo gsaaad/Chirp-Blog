@@ -10,28 +10,34 @@
   <header>
     <nav class="navbar text-center">Chirp Blog</nav>
   </header>
-  <body>
-    <div class="grid grid-cols-3 gap-4 bg-slate-600 h-screen">
-      <div class="grid bg-red-500 col-span-1 text-center">
-        <div class="m-4">Home</div>
-        <div class="m-4">Login</div>
-        <div class="m-4">Dashboard</div>
-      </div>
-      <div class="bg-red-400 col-span-2 m-2 p-4">
-        <div class="bg-slate-100">
-          <h1>Add Title Here!</h1>
-          <textarea
-            name="post_text"
-            id="postText"
-            cols="30"
-            rows="10"
-            class="bg-slate-300"
-          >
-          </textarea>
+  <body class="bg-slate-700">
+    <div class="grid grid-cols-3 gap-4 bg-slate-600">
+
+      {{! sidebar nav }}
+      <div class="grid bg-red-500 col-span-1 text-center sticky top-0 h-48">
+        <div
+          class="m-4 text-white self-center border-4 border-red-700 p-4"
+        >Home</div>
+        {{! <div class="m-4 text-white self-center border-4 border-red-700 p-4">Sign
+          Up</div> }}
+        <div class="m-4 text-white self-center border-4 border-red-700 p-4">
+          {{#if loggedIn}}
+            <a href="/dashboard">DashBoard</a>
+            <button id="logout">Logout</button>
+          {{else}}
+            <a href="/login">Login</a>
+          {{/if}}
         </div>
       </div>
+      <main>{{{body}}}</main>
+
     </div>
+    <footer class="text-xl h-8 text-white">Thanks for visiting</footer>
+
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="/javascript/logout.js"></script>
+    {{! pairing script with logic for logging in/out }}
+    {{#if loggedIn}}
+      <script src="/javascript/logout.js"></script>
+    {{/if}}
   </body>
 </html>

@@ -1,14 +1,26 @@
-<article class="post">
-  <div class="title">
-    <a href="{{post_url}}" target="_blank">{{title}}</a>
-    <span>({{format_url post_url}})</span>
-  </div>
-  <div class="meta">
-    by
-    {{user.username}}
-    on
-    {{format_date created_at}}
-    |
+<article>
+  <a href="{{post_url}}" target="_blank">
+    <div class="bg-red-400 p-4 mt-4 w-64 text-red-700">
+      <h1 class="text-center text-lg text-white">
+        {{title}}
+      </h1>
+      By:
+      {{user.userName}}
+      <h3>
+        On: [{{format_date created_at}}]
+      </h3>
 
-  </div>
+    </div>
+    <div>
+      <textarea
+        readonly
+        name="post_text"
+        class="bg-red-100 w-64 p-4 text-center"
+        id="post_text"
+        rows="10"
+      >{{post_text}}
+      </textarea>
+
+    </div>
+    |</a>
 </article>
