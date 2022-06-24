@@ -45,10 +45,11 @@ router.get("/:id", (req, res) => {
 // create Post
 router.post("/", authUser, (req, res) => {
   Post.create({
+    // take body title, post_text, post_url and check session for User_id and create post with these
     title: req.body.title,
     post_text: req.body.post_text,
     post_url: req.body.post_url,
-    user_id: req.body.user_id,
+    user_id: req.session.user_id,
   })
     .then((postData) => {
       res.json(postData);

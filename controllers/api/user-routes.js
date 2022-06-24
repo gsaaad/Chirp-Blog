@@ -34,9 +34,10 @@ router.get("/:id", (req, res) => {
     })
     .catch((err) => {
       console.log(err, "There's an error in getting a user by ID, Try again!");
+      res.status(500).json(err);
     });
 });
-// create new ID // POST
+// create new ID // User
 router.post("/", (req, res) => {
   User.create({
     firstName: req.body.firstName,
@@ -55,8 +56,10 @@ router.post("/", (req, res) => {
     })
     .catch((err) => {
       console.log(
-        "There was an error in creating/session New User, Try again!"
+        "There was an error in creating/session New User, Try again!",
+        err
       );
+      res.status(500).json(err);
     });
 });
 // logging in
