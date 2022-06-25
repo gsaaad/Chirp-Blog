@@ -5,13 +5,15 @@
   --pastelYellow: #ffe0a3;
   --tobeYellow: #f5d49a;
 }
+
 * {
-  margin: 0px;
-  padding: 0px;
+  margin: 0;
+  padding: 0;
 }
-.navbar {
-  height: 8rem;
+
+nav {
   background-color: var(--brightRed);
+  height: 6rem;
   color: white;
-  font-size: 5rem;
+  font-size: 3rem;
 }

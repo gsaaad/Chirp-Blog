@@ -1,0 +1,46 @@
+<article>
+  <a href="/dashboard" class="text-red-400 text-3xl">
+    &larr; Back to dashboard</a>
+  <h2 class="text-white text-3xl my-8 border-b-4 border-red-400">
+    Edit Post
+  </h2>
+  <form class="edit-post-form">
+    <div>
+      <input name="post-title" type="text" value="{{post.title}}" />
+      <span class="text-red-300 text-xl">({{format_url post.post_url}})</span>
+    </div>
+    <div class="text-red-300 text-xl">
+      {{!-- {{post.vote_count}}
+      {{format_plural "point" post.vote_count}} --}}
+      by you on
+      {{format_date post.created_at}}
+
+      {{!-- <a href="/post/{{post.id}}">{{post.comments.length}}
+        {{format_plural "comment" post.comments.length}}</a> --}}
+    </div>
+    <button
+      type="submit"
+      class="rounded-full bg-red-500 p-2 my-2 text-white text-xl"
+    >Save post</button>
+    <button
+      type="button"
+      class="delete-post-btnrounded-full bg-red-500 p-2 my-2 text-white text-xl"
+    >Delete post</button>
+  </form>
+</article>
+
+{{!-- <form class="comment-form">
+  <div>
+    <textarea name="comment-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add comment</button>
+  </div>
+</form>
+
+{{> comments post.comments}} --}}
+
+<script src="/javascript/edit-post.js"></script>
+<script src="/javascript/delete-post.js"></script>
+{{! <script src="/javascript/comment.js"></scrip }}

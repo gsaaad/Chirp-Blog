@@ -1,0 +1,8 @@
+<ol>
+  <h1 class="text-white text-4xl w-60  border-b-2 border-rose-300 text-center">Latest Chirps</h1>
+  {{#each posts as |post|}}
+  <li>
+    {{> post-info post }}
+  </li>
+  {{/each}}
+</ol>
