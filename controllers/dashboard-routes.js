@@ -28,31 +28,31 @@ router.get("/", withAuth, (req, res) => {
     });
 });
 
-//   router.get("/edit/:id", withAuth, (req, res) => {
-//   Post.findByPk(req.params.id, {
-//     attributes: ["id", "post_url", "title", "post_text", "created_at"],
-//     include: [
-//       {
-//         model: User,
-//         attributes: ["userName"],
-//       },
-//     ],
-//   })
-//     .then((dbPostData) => {
-//       if (dbPostData) {
-//         const post = dbPostData.get({ plain: true });
+router.get("/edit/:id", withAuth, (req, res) => {
+  Post.findByPk(req.params.id, {
+    attributes: ["id", "post_url", "title", "post_text", "created_at"],
+    include: [
+      {
+        model: User,
+        attributes: ["userName"],
+      },
+    ],
+  })
+    .then((dbPostData) => {
+      if (dbPostData) {
+        const post = dbPostData.get({ plain: true });
 
-//         res.render("edit-post", {
-//           post,
-//           loggedIn: true,
-//         });
-//       } else {
-//         res.status(404).end();
-//       }
-//     })
-//     .catch((err) => {
-//       res.status(500).json(err);
-//     });
-// });
+        res.render("edit-post", {
+          post,
+          loggedIn: true,
+        });
+      } else {
+        res.status(404).end();
+      }
+    })
+    .catch((err) => {
+      res.status(500).json(err);
+    });
+});
 
 module.exports = router;
