@@ -25,14 +25,16 @@
         <div class="m-4 text-white self-center border-4 border-red-700 p-4">
           {{#if loggedIn}}
             <a href="/dashboard">DashBoard</a>
-            <button id="logout">Logout</button>
+
           {{else}}
             <a href="/login">Login</a>
 
           {{/if}}
         </div>
         <div class="m-4 text-white self-center border-4 border-red-700 p-4">
-          {{#if loggedIn}}{{else}}
+          {{#if loggedIn}}
+            <button id="logout">Logout</button>
+          {{else}}
             <a href="/signup">Signup</a>
 
           {{/if}}

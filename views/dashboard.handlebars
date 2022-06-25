@@ -12,7 +12,7 @@
     </div>
     <div>
       <label for="post-text">Text</label>
-      <textarea id="post-text" name="post-text" rows="10" cols="30"class="text-black" placeholder="Write text here...."></textarea>
+      <textarea id="post-text" name="post-text" rows="10" cols="30"class="text-black P-2" placeholder="Write text here...."></textarea>
 
     </div>
     <button type="submit" class="rounded-full bg-red-500 p-2 my-2">Create</button>
@@ -20,13 +20,13 @@
 </section>
 
 {{#if posts.length}}
-<section>
+<section class="my-8">
   <h2 class="text-white text-4xl border-b-4 border-red-300">Your Posts</h2>
   <ol>
     {{#each posts as |post|}}
     <li>
       {{> post-info post}}
-      <a href="/dashboard/edit/{{post.id}}" class="edit-link">Edit post</a>
+      <a href="/dashboard/edit/{{post.id}}" class="edit-link rounded-full bg-red-500 p-2 my-2 text-white">Edit post</a>
     </li>
     {{/each}}
   </ol>
