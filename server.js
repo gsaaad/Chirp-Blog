@@ -15,7 +15,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 3001;
 // initiate a session
 const sess = {
-  secret: process.env.SECRET,
+  secret: "super secret",
   cookie: {},
   resave: false,
   saveUninitialized: true,
